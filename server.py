@@ -33,7 +33,7 @@ class Server(paramiko.ServerInterface):
 try:
         global sock
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        sock.bind(('10.0.2.15',22))
+        sock.bind(('localhost',22))
         sock.listen(1)
         print ('Listening for connection...')
 
