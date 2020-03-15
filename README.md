@@ -2,4 +2,4 @@
 
 Hello Everyone,
 It is open source RAT project. 
-contact: mertozal@hotmail.com
+For more detailed codes, another functionalities and questions, contact: mertozal@hotmail.com
